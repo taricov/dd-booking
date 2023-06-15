@@ -49,7 +49,8 @@ const { t } = useI18n()
       </button>
     </div>
   </div>
-<!-- <input :key="i" type="checkbox" for="i in 10" :id=`checkbox_${i}`>{{"checkbox" + i}}</input>-->
+  <!-- <input :key="i" type="checkbox" for="i in 10" :id=`checkbox_${i}`>{{"checkbox" + i}}</input> -->
+  <TheChip />
 </template>
 
 <route lang="yaml">
