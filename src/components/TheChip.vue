@@ -23,7 +23,7 @@ const timeIntervals = ref(slots("07:00", "20:00"))
 <template>
   <div class="container">
     <ul class="ks-cboxtags">
-      <li v-for="(t, i) in timeIntervals" :key="i"><input id="checkboxOne" type="checkbox" value="Rainbow Dash" > <label for="checkboxOne"><div class="flex items-center justify-center space-x-3"><div class="inline-block" i-carbon-checkmark /><span>{{t}}</span></div></label></li>
+      <li v-for="(t, i) in timeIntervals" :key="i"><input :id="'checkbox-'+i" type="checkbox" :value="t" > <label :for="'checkbox-'+i"><div class="flex items-center justify-center space-x-3"><div class="inline-block" i-carbon-checkmark /><span>{{t}}</span></div></label></li>
      <!-- <li><input id="checkboxTwo" type="checkbox" value="Cotton Candy" ><label for="checkboxTwo">Cotton Candy</label></li>
       <li><input id="checkboxThree" type="checkbox" value="Rarity" ><label for="checkboxThree">Rarity</label></li> -->
     </ul>
