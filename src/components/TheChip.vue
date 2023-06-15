@@ -1,12 +1,31 @@
-<script>
+<script setup lang="ts">
+
+
+
+const toMinutes = str => str.split(":").reduce((h, m) => h * 60 + +m);
+
+const toString = min => (Math.floor(min / 60) + ":" + (min % 60))
+                       .replace(/\b\d\b/, "0$&");
+const extra0 = x => x < 600 && x % 60 === 0 ? "0" : ""
+// const extra0 = x => console.log(x)
+function slots(startStr, endStr="10:00") {
+    let start = toMinutes(startStr); 
+    let end = toMinutes(endStr);
+    return Array.from({length: Math.floor((end - start) / 30) + 1}, (_, i) =>
+        toString(start + i * 30) + extra0(start + i * 30)
+    );
+}
+
+const timeIntervals = ref(slots("07:00", "20:00"))
+
 </script>
 
 <template>
   <div class="container">
     <ul class="ks-cboxtags">
-      <li><input id="checkboxOne" type="checkbox" value="Rainbow Dash"><label for="checkboxOne">Rainbow Dash</label></li>
-      <li><input id="checkboxTwo" type="checkbox" value="Cotton Candy" checked><label for="checkboxTwo">Cotton Candy</label></li>
-      <li><input id="checkboxThree" type="checkbox" value="Rarity" checked><label for="checkboxThree">Rarity</label></li>
+      <li v-for="(t, i) in timeIntervals" :key="i"><input id="checkboxOne" type="checkbox" value="Rainbow Dash" > <label for="checkboxOne"><div class="flex items-center justify-center space-x-3"><div class="inline-block" i-carbon-checkmark /><span>{{t}}</span></div></label></li>
+     <!-- <li><input id="checkboxTwo" type="checkbox" value="Cotton Candy" ><label for="checkboxTwo">Cotton Candy</label></li>
+      <li><input id="checkboxThree" type="checkbox" value="Rarity" ><label for="checkboxThree">Rarity</label></li> -->
     </ul>
   </div>
 </template>
@@ -57,12 +76,15 @@ ul.ks-cboxtags li label::before {
     font-weight: 900;
     font-size: 12px;
     padding: 2px 6px 2px 2px;
-    content: "\f067";
+    
+    
+    /* content: ""; */
     transition: transform .3s ease-in-out;
 }
 
 ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
-    content: "\f00c";
+    /* content: ""; */
+    transition: transform .3s ease-in-out;
     transform: rotate(-360deg);
     transition: transform .3s ease-in-out;
 }
