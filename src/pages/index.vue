@@ -1,179 +1,187 @@
 <script setup lang="ts">
 // defineComponents({})
 defineOptions({
-  name: 'IndexPage',
+name: 'IndexPage',
 })
-const user = useUserStore()
+	const user = useUserStore()
 const name = ref(user.savedName)
 
 const router = useRouter()
-function go() {
-  if (name.value)
-    router.push(`/hi/${encodeURIComponent(name.value)}`)
-}
+	function go() {
+		if (name.value)
+			router.push(`/hi/${encodeURIComponent(name.value)}`)
+	}
 
 const { t } = useI18n()
-</script>
+	</script>
 
-<template>
-  
-<div class="option-group">
-  <div class="option-container">
+	<template>
 
-    <input class="option-input" checked id="option-1" type="radio" name="options" />
-    <input class="option-input" id="option-2" type="radio" name="options" />
-    
-    <label class="option !bg-sky-500/20" for="option-1">
-      <span class="option__indicator"></span>
-      <span class="option__label">
-     <sub class="text-lg">From/To</sub>
-      </span>
-    </label>
+	<!-- <div class="!text-6xl mx-auto my-20 font-bold flex items-center justify-center">D-Booking</div> -->
+	<div href="#" class="inline-flex justify-between items-center py-1 px-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700" role="alert">From checkout to global sales tax compliance, companies</div>
 
-    <label class="option !bg-sky-500/20" for="option-2">
-      <span class="option__indicator"></span>
-      <span class="option__label">
-     <sub class="text-lg">Hours</sub>
-     </span>
-    </label>
+	<div class="option-group">
+	<div class="option-container">
 
-  </div>
+	<input class="option-input" checked id="option-1" type="radio" name="options" />
+	<input class="option-input" id="option-2" type="radio" name="options" />
+
+	<label class="option !bg-gray-800/30" for="option-1">
+	<span class="option__indicator"></span>
+
+	<span class="option__label">
+	<sub class="!text-[0.3em]">One-Time</sub>
+	</span>
+	</label>
+
+	<label class="option !bg-gray-800/30" for="option-2">
+	<span class="option__indicator"></span>
+	<span class="option__label">
+	<sub class="">Range</sub>
+	</span>
+	</label>
+
+	</div>
+	</div>
+
+
+
+
+<!--
+	<div>
+	<div text-4xl>
+	<div i-carbon-campsite inline-block />
+	</div>
+	<p>
+	<em text-sm opacity-75>{{ t('intro.desc') }}</em>
+	</p>
+
+	<div py-4 />
+
+	<TheInput
+	v-model="name"
+	:placeholder="t('intro.whats-your-name')"
+	autocomplete="false"
+	@keydown.enter="go"
+	/>
+	<label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
+
+	<div>
+	<button
+	m-3 text-sm btn
+	:disabled="!name"
+	@click="go"
+	>
+{{ t('button.go') }}
+</button>
 </div>
+</div> 
+-->
+<!-- <input :key="i" type="checkbox" for="i in 10" :id=`checkbox_${i}`>{{"checkbox" + i}}</input> -->
+<TheChip />
+<div i-carbon-logo-github/>  
+<div i-carbon-logo-linkedin />
 
-
-
-
-
-  <div>
-    <div text-4xl>
-      <div i-carbon-campsite inline-block />
-    </div>
-    <p>
-      <em text-sm opacity-75>{{ t('intro.desc') }}</em>
-    </p>
-
-    <div py-4 />
-
-    <TheInput
-      v-model="name"
-      :placeholder="t('intro.whats-your-name')"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
-    <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
-
-    <div>
-      <button
-        m-3 text-sm btn
-        :disabled="!name"
-        @click="go"
-      >
-        {{ t('button.go') }}
-      </button>
-    </div>
-  </div>
-  <!-- <input :key="i" type="checkbox" for="i in 10" :id=`checkbox_${i}`>{{"checkbox" + i}}</input> -->
-  <TheChip />
-  <div i-carbon-logo-github/>  
-  <div i-carbon-logo-linkedin />
-  
-      <div i-carbon-language />
+<div i-carbon-language />
 
 
 </template>
 
 <route lang="yaml">
 meta:
-  layout: home
+layout: home
 </route>
 <style scoped>
 html {
-	 background: linear-gradient(to bottom,#4678F3,#64D6EE);
-	 font-size: 62.5%;
-	 height: 100%;
-	 display: flex;
+background: linear-gradient(to bottom,#4678F3,#64D6EE);
+	    font-size: 62.5%;
+height: 100%;
+display: flex;
 }
- body {
-	 width: 100%;
-	 margin: auto;
+body {
+width: 100%;
+margin: auto;
 }
- .option-group {
-	 width: 90%;
-	 max-width: 400px;
-	 height: 150px;
-	 position: relative;
-	 overflow: hidden;
-	 border-radius: 0.25em;
-	 font-size: 4rem;
-	 margin: 0.2em auto;
-	 transform: translateZ(0);
+.option-group {
+width: 90%;
+       max-width: 400px;
+height: 150px;
+position: relative;
+overflow: hidden;
+	  border-radius: 0.25em;
+	  font-size: 4rem;
+margin: 0.2em auto;
+transform: translateZ(0);
 }
- .option-container {
-	 display: flex;
+.option-container {
+display: flex;
 	 justify-content: center;
 	 align-items: stretch;
-	 width: 120%;
-	 height: 100%;
-	 margin: 0 -10%;
+width: 120%;
+height: 100%;
+margin: 0 -10%;
 }
- .option {
-	 overflow: hidden;
-	 flex: 1;
-	 display: block;
-	 padding: 0.5em;
-	 background: #64D6EE;
-	 position: relative;
-	 margin: 0em;
-	 margin-right: 0.2em;
-	 border-radius: 0.25em;
-	 display: flex;
+.option {
+overflow: hidden;
+flex: 1;
+display: block;
+padding: 0.5em;
+background: #64D6EE;
+position: relative;
+margin: 0em;
+	margin-right: 0.2em;
+	border-radius: 0.25em;
+display: flex;
 	 justify-content: flex-end;
 	 align-items: flex-start;
 	 flex-direction: column;
-	 cursor: pointer;
-	 opacity: 0.5;
+cursor: pointer;
+opacity: 0.5;
 	 transition-duration: 0.8s, 0.6s;
 	 transition-property: transform, opacity;
 	 transition-timing-function: cubic-bezier(.98,0,.22,.98), linear;
 	 will-change: transform, opacity;
 }
- .option:last-child {
-	 margin-right: 0;
+.option:last-child {
+	margin-right: 0;
 }
- .option__indicator {
-	 display: block;
+.option__indicator {
+display: block;
 	 transform-origin: left bottom;
-	 transition: inherit;
-	 will-change: transform;
-	 position: absolute;
-	 top: 0.5em;
-	 right: 0.5em;
-	 left: 0.5em;
+transition: inherit;
+	    will-change: transform;
+position: absolute;
+top: 0.5em;
+right: 0.5em;
+left: 0.5em;
 }
- .option__indicator:before, .option__indicator:after {
-	 content: '';
-	 display: block;
-	 border: solid 2px #64D6EE;
-	 border-radius: 50%;
-	 width: 0.25em;
-	 height: 0.25em;
-	 position: absolute;
-	 top: 0;
-	 right: 0;
+
+.option__indicator:before, .option__indicator:after {
+
+display: block;
+border: solid 2px #585757;
+border-radius: 50%;
+width: 0.25em;
+height: 0.25em;
+position: absolute;
+top: 0;
+right: 0;
 }
- .option__indicator:after {
-	 background: #64D6EE;
-	 transform: scale(0);
-	 transition: inherit;
-	 will-change: transform;
+.option__indicator:after {
+@apply bg-white
+background: #000;
+transform: scale(0);
+transition: inherit;
+	    will-change: transform;
 }
- .option-input {
-	 position: absolute;
-	 top: 0;
-	 z-index: -1;
-	 visibility: hidden;
+.option-input {
+position: absolute;
+top: 0;
+     z-index: -1;
+visibility: hidden;
 }
- .option__label {
+.option__label {
+	@apply after:dark:border-white;
 	 display: block;
 	 width: 100%;
 	 text-transform: uppercase;
@@ -185,15 +193,12 @@ html {
 	 will-change: transform;
 }
  .option__label sub {
-	 margin-left: 0.25em;
 	 font-size: 0.4em;
-	 display: inline-block;
-	 vertical-align: 0.3em;
 }
  .option__label:after {
 	 content: '';
 	 display: block;
-	 border: solid 2px #64D6EE;
+	 border: solid 2px #000;
 	 width: 100%;
 	 transform-origin: 0 0;
 	 transform: scaleX(0.2);
