@@ -24,14 +24,12 @@ async function toggleLocales() {
       </RouterLink>
 
       <RouterLink icon-btn to="/about" :title="t('button.about')">
-        <!-- <div i-carbon-dicom-overlay /> -->
         About
       </RouterLink>
 
-      <a icon-btn rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank" title="GitHub">
-        <!-- <div i-carbon-logo-github /> -->
+      <RouterLink icon-btn rel="noreferrer" to="/connect">
         Connect
-      </a>
+      </RouterLink>
 
       <a v-if="locale === 'en'" icon-btn :title="t('button.toggle_langs')" @click="toggleLocales()">
         <!-- <div i-carbon-language /> -->

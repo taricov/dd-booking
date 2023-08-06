@@ -1,51 +1,51 @@
+<!-- eslint-disable no-mixed-operators -->
 <script setup lang="ts">
-
 const oldValue = ref<any>()
 const newValue = ref<any>()
 const selectedChips = ref<any>([])
-//const selectChip = (e:any) => {
-watch(selectedChips, (oldV, newV)=>{
-oldValue.value = oldV
-newValue.value = newV
-selectRange(oldValue.value, newValue.value)
-//console.log(oldV.slice(-1).pop(), newV.slice(-1).pop())
+// const selectChip = (e:any) => {
+watch(selectedChips, (oldV, newV) => {
+  oldValue.value = oldV
+  newValue.value = newV
+  selectRange(oldValue.value, newValue.value)
+// console.log(oldV.slice(-1).pop(), newV.slice(-1).pop())
 })
-function selectRange(oldV:any, newV:any){
-window.addEventListener("mousedown", (e:any) => {
-if(e.shiftKey){
-//console.log("someting happened", newV.slice(-1).pop())
-console.log(oldV, newV)
-console.log("this is ", selectedChips.value)
+function selectRange(oldV: any, newV: any) {
+  window.addEventListener('mousedown', (e: any) => {
+    if (e.shiftKey) {
+      // console.log("someting happened", newV.slice(-1).pop())
+      console.log(oldV, newV)
+      console.log('this is ', selectedChips.value)
+    }
+  })
 }
 
-})
+const toMinutes = str => str.split(':').reduce((h, m) => h * 60 + +m)
+
+function toString(min) {
+  return (`${Math.floor(min / 60)}:${min % 60}`)
+    .replace(/\b\d\b/, '0$&')
 }
-
-
-const toMinutes = str => str.split(":").reduce((h, m) => h * 60 + +m);
-
-const toString = min => (Math.floor(min / 60) + ":" + (min % 60))
-                       .replace(/\b\d\b/, "0$&");
-const extra0 = x => x < 600 && x % 60 === 0 ? "0" : ""
+const extra0 = x => x < 600 && x % 60 === 0 ? '0' : ''
 // const extra0 = x => console.log(x)
-function slots(startStr: string, endStr: string ="10:00") {
+function slots(startStr: string, endStr = '10:00') {
   const start: number = toMinutes(startStr)
   const end: number = toMinutes(endStr)
   return Array.from({ length: Math.floor((end - start) / 30) + 1 }, (_, i) =>
     toString(start + i * 30) + extra0(start + i * 30))
 }
 
-const timeIntervals = ref(slots("07:00", "20:00"))
-
+const timeIntervals = ref(slots('07:00', '20:00'))
 </script>
 
 <template>
-  <div class="container flex mx-auto items-center justify-center">
+  <div class="mx-auto flex items-center justify-center container">
     <ul class="ks-cboxtags">
-      <li v-for="(t, i) in timeIntervals" :key="i"><input v-model="selectedChips" :id="'checkbox-'+i" type="checkbox" :value="t" > <label :for="'checkbox-'+i" :class="{'!w-[100px]': selectedChips.includes(t)}" class="relative w-[80px] transition-all duration-300 overflow-hidden"><div class="flex items-center justify-center space-x-3"><div class="inline-block transition-all duration-300 absolute top-1/2 left-4 tranform -translate-x-1/2 -translate-y-1/2" v-if="selectedChips.includes(t)" i-carbon-checkmark /><span>{{t}}</span></div></label></li>
-      
+      <li v-for="(t, i) in timeIntervals" :key="i">
+        <input :id="`checkbox-${i}`" v-model="selectedChips" type="checkbox" :value="t"> <label :for="`checkbox-${i}`" :class="{ '!w-[100px]': selectedChips.includes(t) }" class="relative w-[80px] overflow-hidden transition-all duration-300"><div class="flex items-center justify-center space-x-3"><div v-if="selectedChips.includes(t)" class="tranform absolute left-4 top-1/2 inline-block transition-all duration-300 -translate-x-1/2 -translate-y-1/2" i-carbon-checkmark /><span>{{ t }}</span></div></label>
+      </li>
 
-     <!-- <li><input id="checkboxTwo" type="checkbox" value="Cotton Candy" ><label for="checkboxTwo">Cotton Candy</label></li>
+      <!-- <li><input id="checkboxTwo" type="checkbox" value="Cotton Candy" ><label for="checkboxTwo">Cotton Candy</label></li>
       <li><input id="checkboxThree" type="checkbox" value="Rarity" ><label for="checkboxThree">Rarity</label></li> -->
     </ul>
   </div>
@@ -97,8 +97,7 @@ ul.ks-cboxtags li label::before {
     font-weight: 900;
     font-size: 12px;
     padding: 2px 6px 2px 2px;
-    
-    
+
     /* content: ""; */
     transition: transform .3s ease-in-out;
 }
@@ -125,6 +124,6 @@ ul.ks-cboxtags li input[type="checkbox"] {
   opacity: 0;
 }
 ul.ks-cboxtags li input[type="checkbox"]:focus + label {
-  border: 2px solid #e9a1ff;
+  /*border: 2px solid #e9a1ff;*/
 }
 </style>
