@@ -7,7 +7,7 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 </p>
 
 <br>
-
+<br>
 <p align='center'>
 <a href="https://vitesse.netlify.app/">Live Demo</a>
 </p>
