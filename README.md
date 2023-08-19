@@ -8,8 +8,6 @@ d-booking is a business tool and part of <a href="#">D-Suite</a> for creating a 
 
 <br>
 
-### How to use
-
 Just run and visit http://localhost:3333
 
 ```bash
